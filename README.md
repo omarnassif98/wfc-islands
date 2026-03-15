@@ -1,4 +1,4 @@
-# Quantum Forge 🌌
+# Quantum Sandbox 🌌
 
 Procedural generation playground powered by **Wave Function Collapse (WFC)**. Created using **Google Antigravity** with minimal human input.
 
@@ -22,5 +22,5 @@ Since this project has been converted to a static site, you can run it directly 
 
 *Note: The original project was developed using a Flask backend, but has been flattened for GitHub Pages compatibility.*
 
-## 🧠 Behind the Forge
+## 🧠 Behind the Sandbox
 This project was built iteratively through a series of AI-driven prompts. You can view the full development walkthrough and action plans in the [About Page](about.html).
