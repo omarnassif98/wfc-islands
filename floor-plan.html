@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floor Plan Generation | Quantum Forge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Wave Function Collapse</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Island Generation</a></li>
+            <li><a href="floor-plan.html" class="active">Floor Plan Generation</a></li>
+            <li><a href="about.html">How it was made</a></li>
+        </ul>
+    </nav>
+
+    <div class="app-container">
+        <header>
+            <h1>Quantum <span class="highlight">Floor</span> Forge</h1>
+            <p>Procedural interior generation using Wave Function Collapse</p>
+        </header>
+
+        <main class="main-content">
+            <aside class="sidebar">
+                <div class="panel controls-panel">
+                    <h2>Generation</h2>
+                    <p class="panel-desc">Click 'Generate' to collapse the wave function and build the interior.</p>
+                    <button id="generate-btn" class="btn primary-btn">
+                        <span class="btn-text">Generate Floor Plan</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                    <button id="clear-btn" class="btn secondary-btn">Clear All</button>
+                    
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span id="status-text">System Ready</span>
+                    </div>
+                </div>
+
+                <div class="panel palette-panel">
+                    <h2>Manual Placement</h2>
+                    <p class="panel-desc">Pre-set conditions before generation. Select an interior type and click the grid.</p>
+                    <div class="terrain-options">
+                        <button class="terrain-btn selected" data-type="floor">
+                            <div class="color-swatch floor"></div>
+                            <span>Floor</span>
+                        </button>
+                        <button class="terrain-btn" data-type="wall">
+                            <div class="color-swatch wall"></div>
+                            <span>Wall</span>
+                        </button>
+                        <button class="terrain-btn" data-type="empty">
+                            <div class="color-swatch empty"></div>
+                            <span>Outside (Empty)</span>
+                        </button>
+                        <button class="terrain-btn erase-btn" data-type="erase">
+                            <div class="color-swatch erase"></div>
+                            <span>Erase / Reset</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="panel settings-panel">
+                    <h2>Tile Weights</h2>
+                    <p class="panel-desc">Adjust the frequency of each tile type during generation.</p>
+                    <div class="weight-controls">
+                        <label class="weight-label">
+                            <span class="weight-name"><div class="color-swatch floor" style="width: 12px; height: 12px;"></div> Floor</span>
+                            <input type="number" id="weight-floor" value="60" min="1" max="1000" class="weight-input">
+                        </label>
+                        <label class="weight-label">
+                            <span class="weight-name"><div class="color-swatch wall" style="width: 12px; height: 12px;"></div> Wall</span>
+                            <input type="number" id="weight-wall" value="30" min="1" max="1000" class="weight-input">
+                        </label>
+                        <label class="weight-label">
+                            <span class="weight-name"><div class="color-swatch empty" style="width: 12px; height: 12px;"></div> Outside</span>
+                            <input type="number" id="weight-empty" value="5" min="1" max="1000" class="weight-input">
+                        </label>
+                    </div>
+
+                    <h2 style="margin-top: 1.5rem;">Strategy</h2>
+                    <p class="panel-desc">Algorithm propagation method.</p>
+                    <div class="strategy-controls">
+                        <select id="strategy-select" class="strategy-select">
+                            <option value="bfs">Breadth-First (Wave)</option>
+                            <option value="dfs">Depth-First (Tendril)</option>
+                        </select>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="grid-section">
+                <div class="grid-wrapper">
+                    <div id="grid-container" class="grid-container">
+                        <!-- JS generated 32x32 tiles go here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="./floor_plan.js"></script>
+</body>
+</html>
