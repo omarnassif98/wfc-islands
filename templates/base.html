@@ -18,14 +18,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') if url_for is defined else './style.css' }}">
     {% block extra_css %}{% endblock %}
+    <style>
+        /* Mobile Navbar Scroll Fix */
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 0.5rem 1rem !important;
+            }
+            .nav-links {
+                overflow-x: auto;
+                white-space: nowrap;
+                flex-wrap: nowrap;
+                gap: 1.5rem;
+                padding-bottom: 5px; /* Space for scrollbar if visible */
+                width: 100%;
+                justify-content: flex-start;
+                -webkit-overflow-scrolling: touch;
+            }
+            .nav-links::-webkit-scrollbar {
+                display: none; /* Hide scrollbar for a cleaner feel */
+            }
+            .nav-brand {
+                display: none; /* Hide brand on very small screens to give room to links */
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-brand">Wave Function Collapse</div>
         <ul class="nav-links">
-            <li><a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">Island Generation</a></li>
-            <li><a href="{{ url_for('floor_plan') }}" class="{% if request.endpoint == 'floor_plan' %}active{% endif %}">Floor Plan Generation</a></li>
-            <li><a href="{{ url_for('about') }}" class="{% if request.endpoint == 'about' %}active{% endif %}">How it was made</a></li>
+            <li><a href="/" class="{% if request.endpoint == 'index' %}active{% endif %}">Island Generation</a></li>
+            <li><a href="/floors" class="{% if request.endpoint == 'floor_plan' %}active{% endif %}">Floor Plan Generation</a></li>
+            <li><a href="/about" class="{% if request.endpoint == 'about' %}active{% endif %}">How it was made</a></li>
         </ul>
     </nav>
 

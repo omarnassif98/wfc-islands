@@ -551,6 +551,23 @@
                 </ul>
             </div>
         </details>
+        <details class="chat-entry">
+            <summary class="chat-header">
+                <div class="chat-time">2026-03-16 03:50:00</div>
+                <div class="chat-prompt">
+                    <i style="text-align: left; width: 100%;">"make about.html into about/index.html, floor_plan.html into floors/index.html and update the navbar hrefs to /, /floors, and /about respectively. Also the navbar is too cluttered when portrait on mobile. Make the navbar be able to scroll horizontally"</i>
+                </div>
+            </summary>
+            <div class="chat-content">
+                <h3 class="plan-title">Plan of Action</h3>
+                <p><strong>Goal:</strong> Implement professional directory routing and improve mobile navigation ergonomics.</p>
+                <ul>
+                    <li>Restructure the static file architecture to supporting 'pretty' URLs by nesting index files within <code>/about/</code> and <code>/floors/</code> directories.</li>
+                    <li>Rewrite the Navbar CSS to enable smooth horizontal touch-scrolling for better usability on narrow portrait viewports.</li>
+                    <li>Synchronize all internal linking to use the new directory-based routing system.</li>
+                </ul>
+            </div>
+        </details>
     </div>
 </main>
 {% endblock %}

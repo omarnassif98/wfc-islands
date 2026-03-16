@@ -6,7 +6,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/floor-plan')
+@app.route('/floors')
 def floor_plan():
     return render_template('floor_plan.html')
 

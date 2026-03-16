@@ -5,39 +5,50 @@ from jinja2 import Environment, FileSystemLoader
 template_dir = 'templates'
 env = Environment(loader=FileSystemLoader(template_dir))
 
-# Mock url_for to handle static assets and page links
-def url_for(endpoint, **values):
-    if endpoint == 'static':
-        return f"./{values.get('filename')}"
-    
-    mapping = {
-        'index': 'index.html',
-        'about': 'about.html',
-        'floor_plan': 'floor-plan.html'
-    }
-    return mapping.get(endpoint, "#")
-
-# Add mocks to the Jinja environment globals
-env.globals['url_for'] = url_for
-
 def compile_static_html():
-    print("🚀 Starting Pure Jinja2 -> Static HTML Compilation...")
+    print("🚀 Starting Pure Jinja2 -> Directory-Based Static HTML Compilation...")
     
     pages = [
-        {'endpoint': 'index', 'template': 'index.html', 'output': 'index.html'},
-        {'endpoint': 'about', 'template': 'about.html', 'output': 'about.html'},
-        {'endpoint': 'floor_plan', 'template': 'floor_plan.html', 'output': 'floor-plan.html'}
+        {'endpoint': 'index', 'template': 'index.html', 'output': 'index.html', 'depth': 0},
+        {'endpoint': 'about', 'template': 'about.html', 'output': 'about/index.html', 'depth': 1},
+        {'endpoint': 'floor_plan', 'template': 'floor_plan.html', 'output': 'floors/index.html', 'depth': 1}
     ]
     
     for page in pages:
         print(f"📄 Compiling '{page['template']}' -> {page['output']}...")
         
+        # Ensure directory exists for nested pages
+        output_dir = os.path.dirname(page['output'])
+        if output_dir and not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+            
+        # Custom url_for mock that respects depth
+        prefix = "../" * page['depth']
+        
+        def url_for_mock(endpoint, **values):
+            if endpoint == 'static':
+                return f"{prefix}{values.get('filename')}"
+            
+            mapping = {
+                'index': f"{prefix}index.html",
+                'about': f"{prefix}about/index.html",
+                'floor_plan': f"{prefix}floors/index.html"
+            }
+            return mapping.get(endpoint, "#")
+
         # Mock the request object specifically for each page
         request_mock = type('MockRequest', (), {'endpoint': page['endpoint']})
+        
+        # Fresh globals for each page because of prefix logic
+        env.globals['url_for'] = url_for_mock
         
         template = env.get_template(page['template'])
         content = template.render(request=request_mock)
         
+        # No longer mangling the pretty URLs to index.html
+        # This ensures /floors and /about work as clean URLs on the static host
+        pass
+
         # Write to the root directory
         with open(page['output'], 'w') as f:
             f.write(content)

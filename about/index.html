@@ -14,18 +14,42 @@
     <meta property="og:description" content="A procedural generation playground for islands and interior floor plans.">
     <meta property="og:image" content="https://waves.byomz.dev/favicon.png">
 
-    <link rel="icon" type="image/png" href="./favicon.png">
+    <link rel="icon" type="image/png" href="../favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../style.css">
     
+    <style>
+        /* Mobile Navbar Scroll Fix */
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 0.5rem 1rem !important;
+            }
+            .nav-links {
+                overflow-x: auto;
+                white-space: nowrap;
+                flex-wrap: nowrap;
+                gap: 1.5rem;
+                padding-bottom: 5px; /* Space for scrollbar if visible */
+                width: 100%;
+                justify-content: flex-start;
+                -webkit-overflow-scrolling: touch;
+            }
+            .nav-links::-webkit-scrollbar {
+                display: none; /* Hide scrollbar for a cleaner feel */
+            }
+            .nav-brand {
+                display: none; /* Hide brand on very small screens to give room to links */
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-brand">Wave Function Collapse</div>
         <ul class="nav-links">
-            <li><a href="index.html" class="">Island Generation</a></li>
-            <li><a href="floor-plan.html" class="">Floor Plan Generation</a></li>
-            <li><a href="about.html" class="active">How it was made</a></li>
+            <li><a href="/" class="">Island Generation</a></li>
+            <li><a href="/floors" class="">Floor Plan Generation</a></li>
+            <li><a href="/about" class="active">How it was made</a></li>
         </ul>
     </nav>
 
@@ -576,6 +600,23 @@
                     <li>Refactor the compilation script to use the core <code>jinja2</code> Environment and FileSystemLoader.</li>
                     <li>Implement a custom <code>url_for</code> mock within the Jinja environment to handle asset mapping and cross-page linking without requiring a server context.</li>
                     <li>Finalize the 32x32 grid generation tools as a fully portable, static web experience.</li>
+                </ul>
+            </div>
+        </details>
+        <details class="chat-entry">
+            <summary class="chat-header">
+                <div class="chat-time">2026-03-16 03:50:00</div>
+                <div class="chat-prompt">
+                    <i style="text-align: left; width: 100%;">"make about.html into about/index.html, floor_plan.html into floors/index.html and update the navbar hrefs to /, /floors, and /about respectively. Also the navbar is too cluttered when portrait on mobile. Make the navbar be able to scroll horizontally"</i>
+                </div>
+            </summary>
+            <div class="chat-content">
+                <h3 class="plan-title">Plan of Action</h3>
+                <p><strong>Goal:</strong> Implement professional directory routing and improve mobile navigation ergonomics.</p>
+                <ul>
+                    <li>Restructure the static file architecture to supporting 'pretty' URLs by nesting index files within <code>/about/</code> and <code>/floors/</code> directories.</li>
+                    <li>Rewrite the Navbar CSS to enable smooth horizontal touch-scrolling for better usability on narrow portrait viewports.</li>
+                    <li>Synchronize all internal linking to use the new directory-based routing system.</li>
                 </ul>
             </div>
         </details>
