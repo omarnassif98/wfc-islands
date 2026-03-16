@@ -1,5 +1,5 @@
 :root {
-    /* Color Palette */
+    /* DEFAULT (DARK) THEME */
     --bg-dark: #0f172a;
     --bg-panel: #1e293b;
     --text-main: #f8fafc;
@@ -7,7 +7,8 @@
     --accent: #3b82f6;
     --accent-hover: #60a5fa;
     --border-color: #334155;
-    
+    --shadow-color: rgba(0, 0, 0, 0.3);
+
     /* Terrain Colors (Islands) */
     --terrain-water: #0ea5e9;
     --terrain-water-hover: #38bdf8;
@@ -32,6 +33,23 @@
 
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Outfit', sans-serif;
+}
+
+/* LIGHT THEME OVERRIDES */
+body.light-mode {
+    --bg-dark: #f8fafc;
+    --bg-panel: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --border-color: #e2e8f0;
+    --shadow-color: rgba(15, 23, 42, 0.08);
+
+    --terrain-empty: #f1f5f9;
+    --terrain-empty-hover: #e2e8f0;
+    --terrain-uncollapsed: #e2e8f0;
+    --terrain-uncollapsed-hover: #cbd5e1;
 }
 
 * {
@@ -70,7 +88,7 @@ body {
     justify-content: space-between;
     align-items: flex-end; /* Align elements to the bottom */
     padding: 0.5rem 2rem; /* Slimmer padding */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px -1px var(--shadow-color);
 }
 
 .nav-brand {
@@ -147,7 +165,7 @@ header p {
     border-radius: 12px;
     padding: 1.5rem;
     border: 1px solid var(--border-color);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 25px -5px var(--shadow-color);
 }
 
 .panel h2 {
@@ -363,7 +381,7 @@ header p {
     border-radius: 12px;
     padding: 2rem;
     border: 1px solid var(--border-color);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 25px -5px var(--shadow-color);
 }
 
 .grid-wrapper {

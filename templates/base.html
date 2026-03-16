@@ -41,11 +41,55 @@
                 display: none; /* Hide brand on very small screens to give room to links */
             }
         }
+
+        /* Theme Toggle Styling */
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem;
+            transition: all 0.2s;
+            margin-right: 1rem;
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent);
+        }
+
+        body.light-mode .theme-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        .theme-toggle .icon-sun { display: none; }
+        .theme-toggle .icon-moon { display: block; }
+        body.light-mode .theme-toggle .icon-sun { display: block; }
+        body.light-mode .theme-toggle .icon-moon { display: none; }
     </style>
+    <!-- Anti-FOUC Script -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+            }
+        })();
+    </script>
 </head>
 <body>
     <nav class="navbar">
-        <div class="nav-brand">Wave Function Collapse</div>
+        <div style="display: flex; align-items: flex-end;">
+            <div class="nav-brand" style="margin-right: 1.5rem;">Wave Function Collapse</div>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                <svg class="icon-moon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="icon-sun" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+        </div>
         <ul class="nav-links">
             <li><a href="/" class="{% if request.endpoint == 'index' %}active{% endif %}">Island Generation</a></li>
             <li><a href="/floors" class="{% if request.endpoint == 'floor_plan' %}active{% endif %}">Floor Plan Generation</a></li>
@@ -57,6 +101,15 @@
         {% block content %}{% endblock %}
     </div>
 
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const isLight = document.body.classList.toggle('light-mode');
+                localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            });
+        }
+    </script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>
