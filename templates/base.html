@@ -4,8 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Quantum Island Sandbox{% endblock %}</title>
+    <meta name="description" content="Quantum Sandbox: A procedural generation playground for islands and interior floor plans.">
+    <meta name="keywords" content="Wave Function Collapse, WFC, Procedural Generation, Quantum Sandbox">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://waves.byomz.dev/">
+    <meta property="og:title" content="Quantum Sandbox">
+    <meta property="og:description" content="A procedural generation playground for islands and interior floor plans.">
+    <meta property="og:image" content="https://waves.byomz.dev/favicon.png">
+
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') if url_for is defined else './favicon.png' }}">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') if url_for is defined else './style.css' }}">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
