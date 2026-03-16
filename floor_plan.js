@@ -111,99 +111,53 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- MACRO GENERATION (ORGANIC ROOM MASKS) ---
+    // --- MACRO GENERATION (RECTANGULAR ROOM MASKS) ---
     function generateRoomMask() {
         roomMask = Array(GRID_SIZE).fill().map(() => Array(GRID_SIZE).fill(false));
         
-        // 1. Maximize Bounding Box: Seed focal points near the corners and center.
-        const focalPoints = [];
-        const padding = 6;
-        focalPoints.push({ x: GRID_SIZE / 2, y: GRID_SIZE / 2 }); // Center
-        focalPoints.push({ x: padding + Math.random() * 4, y: padding + Math.random() * 4 }); // TL
-        focalPoints.push({ x: GRID_SIZE - padding - Math.random() * 4, y: padding + Math.random() * 4 }); // TR
-        focalPoints.push({ x: padding + Math.random() * 4, y: GRID_SIZE - padding - Math.random() * 4 }); // BL
-        focalPoints.push({ x: GRID_SIZE - padding - Math.random() * 4, y: GRID_SIZE - padding - Math.random() * 4 }); // BR
+        const rooms = [];
+        const numRooms = Math.floor(Math.random() * 3) + 3; // 3 to 6 rooms
 
-        // 2. Organic Lobe Splatting: Draw intersecting circles around focal points
-        for (const fp of focalPoints) {
-            const numSplats = Math.floor(Math.random() * 3) + 2; // 2 to 4 splats per focal point
-            for (let i = 0; i < numSplats; i++) {
-                const offsetX = (Math.random() - 0.5) * 6;
-                const offsetY = (Math.random() - 0.5) * 6;
-                const cx = fp.x + offsetX;
-                const cy = fp.y + offsetY;
-                const radius = Math.random() * 2.0 + 1.2; // Radius 1.2 to 3.2
+        for (let i = 0; i < numRooms; i++) {
+            const w = Math.floor(Math.random() * 4) + 5; // 5 to 8 wide
+            const h = Math.floor(Math.random() * 4) + 5; // 5 to 8 tall
+            const x = Math.floor(Math.random() * (GRID_SIZE - w - 4)) + 2;
+            const y = Math.floor(Math.random() * (GRID_SIZE - h - 4)) + 2;
 
-                drawThickCircle(cx, cy, radius);
-            }
-        }
-
-        // 3. Thick Corridor Bridging (Minimum Spanning Tree)
-        const edges = [];
-        for (let i = 0; i < focalPoints.length; i++) {
-            for (let j = i + 1; j < focalPoints.length; j++) {
-                const dx = focalPoints[i].x - focalPoints[j].x;
-                const dy = focalPoints[i].y - focalPoints[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                edges.push({ u: i, v: j, weight: dist });
-            }
-        }
-        
-        // Sort edges by distance
-        edges.sort((a, b) => a.weight - b.weight);
-
-        // Kruskal's MST
-        const parent = Array(focalPoints.length).fill(-1);
-        function find(i) {
-            if (parent[i] == -1) return i;
-            return parent[i] = find(parent[i]);
-        }
-        function union(i, j) {
-            const rootI = find(i);
-            const rootJ = find(j);
-            if (rootI !== rootJ) {
-                parent[rootI] = rootJ;
-                return true;
-            }
-            return false;
-        }
-
-        const mstEdges = [];
-        for (const edge of edges) {
-            if (union(edge.u, edge.v)) {
-                mstEdges.push(edge);
-            }
-        }
-
-        // Draw thick organic corridors between MST focal nodes
-        for (const edge of mstEdges) {
-            const u = focalPoints[edge.u];
-            const v = focalPoints[edge.v];
-            drawThickLine(u.x, u.y, v.x, v.y, Math.random() * 0.8 + 1.2); // Thickness 1.2 - 2.0
-        }
-    }
-
-    function drawThickCircle(cx, cy, radius) {
-        const r2 = radius * radius;
-        for (let y = 2; y < GRID_SIZE - 2; y++) {
-            for (let x = 2; x < GRID_SIZE - 2; x++) {
-                const dx = x - cx;
-                const dy = y - cy;
-                if (dx * dx + dy * dy <= r2) {
-                    roomMask[y][x] = true;
+            // Mark room in mask
+            for (let ry = y; ry < y + h; ry++) {
+                for (let rx = x; rx < x + w; rx++) {
+                    roomMask[ry][rx] = true;
                 }
             }
-        }
-    }
 
-    function drawThickLine(x0, y0, x1, y1, radius) {
-        const dist = Math.sqrt((x1-x0)*(x1-x0) + (y1-y0)*(y1-y0));
-        const steps = Math.ceil(dist * 2); // Dense interpolation
-        for (let i = 0; i <= steps; i++) {
-            const t = i / steps;
-            const cx = x0 + (x1 - x0) * t;
-            const cy = y0 + (y1 - y0) * t;
-            drawThickCircle(cx, cy, radius);
+            rooms.push({
+                x: x + Math.floor(w / 2),
+                y: y + Math.floor(h / 2)
+            });
+        }
+
+        // Connect rooms with corridors
+        for (let i = 0; i < rooms.length - 1; i++) {
+            const r1 = rooms[i];
+            const r2 = rooms[i + 1];
+
+            // Horizontal corridor
+            const xStart = Math.min(r1.x, r2.x);
+            const xEnd = Math.max(r1.x, r2.x);
+            for (let x = xStart; x <= xEnd; x++) {
+                roomMask[r1.y][x] = true;
+                // Make corridors slightly thicker (2x2) for better flow
+                if (r1.y + 1 < GRID_SIZE) roomMask[r1.y + 1][x] = true;
+            }
+
+            // Vertical corridor
+            const yStart = Math.min(r1.y, r2.y);
+            const yEnd = Math.max(r1.y, r2.y);
+            for (let y = yStart; y <= yEnd; y++) {
+                roomMask[y][r2.x] = true;
+                if (r2.x + 1 < GRID_SIZE) roomMask[y][r2.x + 1] = true;
+            }
         }
     }
 

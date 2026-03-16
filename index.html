@@ -1,133 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Island Generation | Quantum Sandbox</title>
-    <meta name="description" content="Explore procedural terrain generation with Quantum Sandbox. A beautiful Wave Function Collapse island generator built by Google Antigravity.">
-    <meta name="keywords" content="Wave Function Collapse, WFC, Procedural Generation, Terrain Generator, Quantum Sandbox">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://waves.byomz.dev/">
-    <meta property="og:title" content="Island Generation | Quantum Sandbox">
-    <meta property="og:description" content="Explore procedural terrain generation with Quantum Sandbox. A beautiful Wave Function Collapse island generator.">
-    <meta property="og:image" content="https://waves.byomz.dev/favicon.png">
+{% extends "base.html" %}
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://waves.byomz.dev/">
-    <meta property="twitter:title" content="Island Generation | Quantum Sandbox">
-    <meta property="twitter:description" content="Explore procedural terrain generation with Quantum Sandbox. A beautiful Wave Function Collapse island generator.">
-    <meta property="twitter:image" content="https://waves.byomz.dev/favicon.png">
+{% block title %}Island Generation{% endblock %}
 
-    <link rel="icon" type="image/png" href="./favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-    <nav class="navbar">
-        <div class="nav-brand">Wave Function Collapse</div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Island Generation</a></li>
-            <li><a href="floor-plan.html">Floor Plan Generation</a></li>
-            <li><a href="about.html">How it was made</a></li>
-        </ul>
-    </nav>
+{% block content %}
+<header>
+    <h1>Quantum <span class="highlight">Island</span> Sandbox</h1>
+    <p>Procedural terrain generation using Wave Function Collapse</p>
+</header>
 
-    <div class="app-container">
-        <header>
-            <h1>Quantum <span class="highlight">Island</span> Sandbox</h1>
-            <p>Procedural terrain generation using Wave Function Collapse</p>
-        </header>
+<main class="main-content">
+    <aside class="sidebar">
+        <div class="panel controls-panel">
+            <h2>Generation</h2>
+            <p class="panel-desc">Click 'Generate' to collapse the wave function and form an island architecture.</p>
+            <button id="generate-btn" class="btn primary-btn">
+                <span class="btn-text">Generate Map</span>
+                <div class="btn-glow"></div>
+            </button>
+            <button id="clear-btn" class="btn secondary-btn">Clear All</button>
+            
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span id="status-text">System Ready</span>
+            </div>
+        </div>
 
-        <main class="main-content">
-            <aside class="sidebar">
-                <div class="panel controls-panel">
-                    <h2>Generation</h2>
-                    <p class="panel-desc">Click 'Generate' to collapse the wave function and form an island architecture.</p>
-                    <button id="generate-btn" class="btn primary-btn">
-                        <span class="btn-text">Generate Map</span>
-                        <div class="btn-glow"></div>
-                    </button>
-                    <button id="clear-btn" class="btn secondary-btn">Clear All</button>
-                    
-                    <div class="status-indicator">
-                        <div class="status-dot"></div>
-                        <span id="status-text">System Ready</span>
-                    </div>
-                </div>
+        <div class="panel palette-panel">
+            <h2>Manual Placement</h2>
+            <p class="panel-desc">Pre-set conditions before generation. Select a terrain type and click the grid.</p>
+            <div class="terrain-options">
+                <button class="terrain-btn selected" data-type="water">
+                    <div class="color-swatch water"></div>
+                    <span>Water</span>
+                </button>
+                <button class="terrain-btn" data-type="sand">
+                    <div class="color-swatch sand"></div>
+                    <span>Sand</span>
+                </button>
+                <button class="terrain-btn" data-type="grass">
+                    <div class="color-swatch grass"></div>
+                    <span>Grass</span>
+                </button>
+                <button class="terrain-btn" data-type="mountain">
+                    <div class="color-swatch mountain"></div>
+                    <span>Mountain</span>
+                </button>
+                <button class="terrain-btn erase-btn" data-type="erase">
+                    <div class="color-swatch erase"></div>
+                    <span>Erase / Reset</span>
+                </button>
+            </div>
+        </div>
 
-                <div class="panel palette-panel">
-                    <h2>Manual Placement</h2>
-                    <p class="panel-desc">Pre-set conditions before generation. Select a terrain type and click the grid.</p>
-                    <div class="terrain-options">
-                        <button class="terrain-btn selected" data-type="water">
-                            <div class="color-swatch water"></div>
-                            <span>Water</span>
-                        </button>
-                        <button class="terrain-btn" data-type="sand">
-                            <div class="color-swatch sand"></div>
-                            <span>Sand</span>
-                        </button>
-                        <button class="terrain-btn" data-type="grass">
-                            <div class="color-swatch grass"></div>
-                            <span>Grass</span>
-                        </button>
-                        <button class="terrain-btn" data-type="mountain">
-                            <div class="color-swatch mountain"></div>
-                            <span>Mountain</span>
-                        </button>
-                        <button class="terrain-btn erase-btn" data-type="erase">
-                            <div class="color-swatch erase"></div>
-                            <span>Erase / Reset</span>
-                        </button>
-                    </div>
-                </div>
+        <div class="panel settings-panel">
+            <h2>Tile Weights</h2>
+            <p class="panel-desc">Adjust the frequency of each tile type during generation.</p>
+            <div class="weight-controls">
+                <label class="weight-label">
+                    <span class="weight-name"><div class="color-swatch water" style="width: 12px; height: 12px;"></div> Water</span>
+                    <input type="number" id="weight-water" value="50" min="1" max="1000" class="weight-input">
+                </label>
+                <label class="weight-label">
+                    <span class="weight-name"><div class="color-swatch sand" style="width: 12px; height: 12px;"></div> Sand</span>
+                    <input type="number" id="weight-sand" value="10" min="1" max="1000" class="weight-input">
+                </label>
+                <label class="weight-label">
+                    <span class="weight-name"><div class="color-swatch grass" style="width: 12px; height: 12px;"></div> Grass</span>
+                    <input type="number" id="weight-grass" value="20" min="1" max="1000" class="weight-input">
+                </label>
+                <label class="weight-label">
+                    <span class="weight-name"><div class="color-swatch mountain" style="width: 12px; height: 12px;"></div> Mountain</span>
+                    <input type="number" id="weight-mountain" value="2" min="1" max="1000" class="weight-input">
+                </label>
+            </div>
 
-                <div class="panel settings-panel">
-                    <h2>Tile Weights</h2>
-                    <p class="panel-desc">Adjust the frequency of each tile type during generation.</p>
-                    <div class="weight-controls">
-                        <label class="weight-label">
-                            <span class="weight-name"><div class="color-swatch water" style="width: 12px; height: 12px;"></div> Water</span>
-                            <input type="number" id="weight-water" value="50" min="1" max="1000" class="weight-input">
-                        </label>
-                        <label class="weight-label">
-                            <span class="weight-name"><div class="color-swatch sand" style="width: 12px; height: 12px;"></div> Sand</span>
-                            <input type="number" id="weight-sand" value="10" min="1" max="1000" class="weight-input">
-                        </label>
-                        <label class="weight-label">
-                            <span class="weight-name"><div class="color-swatch grass" style="width: 12px; height: 12px;"></div> Grass</span>
-                            <input type="number" id="weight-grass" value="20" min="1" max="1000" class="weight-input">
-                        </label>
-                        <label class="weight-label">
-                            <span class="weight-name"><div class="color-swatch mountain" style="width: 12px; height: 12px;"></div> Mountain</span>
-                            <input type="number" id="weight-mountain" value="2" min="1" max="1000" class="weight-input">
-                        </label>
-                    </div>
+            <h2 style="margin-top: 1.5rem;">Strategy</h2>
+            <p class="panel-desc">Algorithm propagation method.</p>
+            <div class="strategy-controls">
+                <select id="strategy-select" class="strategy-select">
+                    <option value="bfs">Breadth-First (Wave)</option>
+                    <option value="dfs">Depth-First (Tendril)</option>
+                </select>
+            </div>
+        </div>
+    </aside>
 
-                    <h2 style="margin-top: 1.5rem;">Strategy</h2>
-                    <p class="panel-desc">Algorithm propagation method.</p>
-                    <div class="strategy-controls">
-                        <select id="strategy-select" class="strategy-select">
-                            <option value="bfs">Breadth-First (Wave)</option>
-                            <option value="dfs">Depth-First (Tendril)</option>
-                        </select>
-                    </div>
-                </div>
-            </aside>
+    <section class="grid-section">
+        <div class="grid-wrapper">
+            <div id="grid-container" class="grid-container">
+                <!-- JS generated 32x32 tiles go here -->
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
 
-            <section class="grid-section">
-                <div class="grid-wrapper">
-                    <div id="grid-container" class="grid-container">
-                        <!-- JS generated 32x32 tiles go here -->
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <script src="./main.js"></script>
-</body>
-</html>
+{% block extra_js %}
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+{% endblock %}
