@@ -1,8 +1,36 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How This Was Made</title>
+    <meta name="description" content="Quantum Sandbox: A procedural generation playground for islands and interior floor plans.">
+    <meta name="keywords" content="Wave Function Collapse, WFC, Procedural Generation, Quantum Sandbox">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://waves.byomz.dev/">
+    <meta property="og:title" content="Quantum Sandbox">
+    <meta property="og:description" content="A procedural generation playground for islands and interior floor plans.">
+    <meta property="og:image" content="https://waves.byomz.dev/favicon.png">
 
-{% block title %}How This Was Made{% endblock %}
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Wave Function Collapse</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="">Island Generation</a></li>
+            <li><a href="floor-plan.html" class="">Floor Plan Generation</a></li>
+            <li><a href="about.html" class="active">How it was made</a></li>
+        </ul>
+    </nav>
 
-{% block content %}
+    <div class="app-container">
+        
 <header>
     <h1>Welcome to <span class="highlight">Quantum Sandbox</span></h1>
     <p>A look behind the scenes of procedural generation built by Google Antigravity.</p>
@@ -12,7 +40,10 @@
     <div class="panel" style="width: 100%; border-left: 4px solid var(--accent); margin-bottom: 2rem;">
         <h2>Powered by Google Antigravity</h2>
         <p class="panel-desc" style="font-size: 1.1rem; margin-bottom: 0; color: var(--text-main);">
-            This entire multi-page application, including the complex Wave Function Collapse algorithms, UI layouts, styling, and mobile responsiveness, was built purely through natural language using <strong>Google Antigravity</strong>. The user provided minimal, high-level structural prompts, and Antigravity autonomously wrote, structured, styled, and verified the entire Vanilla JS and Flask application codebase.
+            This entire multi-page application, including the complex Wave Function Collapse algorithms, UI layouts,
+            styling, and mobile responsiveness, was built purely through natural language using <strong>Google
+                Antigravity</strong>. The user provided minimal, high-level structural prompts, and Antigravity
+            autonomously wrote, structured, styled, and verified the entire Vanilla JS and Flask application codebase.
         </p>
     </div>
 
@@ -25,6 +56,7 @@
             margin-bottom: 1.5rem;
             overflow: hidden;
         }
+
         .chat-header {
             padding: 1rem 1.5rem;
             cursor: pointer;
@@ -33,13 +65,16 @@
             flex-direction: column;
             gap: 0.5rem;
         }
+
         .chat-header:hover {
             background: rgba(255, 255, 255, 0.02);
         }
+
         .chat-time {
             font-size: 0.85rem;
             color: var(--text-muted);
         }
+
         .chat-prompt {
             color: var(--text-main);
             font-size: 1.05rem;
@@ -47,6 +82,7 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .chat-prompt::after {
             content: '+';
             font-size: 2rem;
@@ -56,61 +92,78 @@
             transition: transform 0.2s ease;
             text-shadow: 0 0 10px var(--accent);
         }
-        details[open] > summary .chat-prompt::after {
+
+        details[open]>summary .chat-prompt::after {
             content: '-';
             transform: rotate(180deg);
         }
+
         summary {
-            list-style: none; /* Hide default arrow */
+            list-style: none;
+            /* Hide default arrow */
         }
+
         summary::-webkit-details-marker {
             display: none;
         }
+
         .chat-content {
             padding: 1.5rem;
             border-top: 1px solid var(--border-color);
             background: rgba(0, 0, 0, 0.1);
         }
+
         .plan-title {
             color: var(--accent);
             font-size: 1.1rem;
             margin-bottom: 1rem;
             margin-top: 0;
         }
-        .chat-content p, .chat-content ul {
+
+        .chat-content p,
+        .chat-content ul {
             color: var(--text-muted);
             margin-bottom: 1rem;
         }
+
         .chat-content li {
             margin-bottom: 0.5rem;
         }
+
         .chat-content code {
             background: var(--bg-dark);
             padding: 0.2rem 0.4rem;
             border-radius: 4px;
             font-family: monospace;
             font-size: 0.9em;
-            color: #d1d5db; /* Lighter text for code */
+            color: #d1d5db;
+            /* Lighter text for code */
         }
     </style>
 
     <div style="width: 100%;">
-        <h2 style="margin-bottom: 1.5rem; font-family: var(--font-heading); color: var(--text-main);">Development Chat History</h2>
-        
+        <h2 style="margin-bottom: 1.5rem; font-family: var(--font-heading); color: var(--text-main);">Development Chat
+            History</h2>
+
         <details class="chat-entry">
             <summary class="chat-header">
                 <div class="chat-time">2026-03-15 20:31:00</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"I want to create a simple website in pure vanilla js served from a flask server that demonstrates quantum wave collapse function for procedural generation..."</i>
+                    <i style="text-align: left; width: 100%;">"I want to create a simple website in pure vanilla js
+                        served from a flask server that demonstrates quantum wave collapse function for procedural
+                        generation..."</i>
                 </div>
             </summary>
             <div class="chat-content">
                 <h3 class="plan-title">Plan of Action</h3>
-                <p><strong>Goal:</strong> Initialize a Flask application with a Vanilla JS frontend that visualizes the Wave Function Collapse algorithm.</p>
+                <p><strong>Goal:</strong> Initialize a Flask application with a Vanilla JS frontend that visualizes the
+                    Wave Function Collapse algorithm.</p>
                 <ul>
                     <li>Set up the Flask backend environment (<code>app.py</code>).</li>
-                    <li>Create the HTML/CSS foundation (<code>index.html</code>, <code>style.css</code>) with a 32x32 CSS grid.</li>
-                    <li>Implement core WFC logic in <code>main.js</code> with 4 base tiles (Water, Sand, Grass, Mountain) and specific adjacency rules.</li>
+                    <li>Create the HTML/CSS foundation (<code>index.html</code>, <code>style.css</code>) with a 32x32
+                        CSS grid.</li>
+                    <li>Implement core WFC logic in <code>main.js</code> with 4 base tiles (Water, Sand, Grass,
+                        Mountain) and specific adjacency rules.</li>
                     <li>Add interactive tools for manual tile placement and generation.</li>
                 </ul>
             </div>
@@ -120,7 +173,8 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-15 20:45:12</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"Very good. I want the user to be able to edit the weights as well"</i>
+                    <i style="text-align: left; width: 100%;">"Very good. I want the user to be able to edit the weights
+                        as well"</i>
                 </div>
             </summary>
             <div class="chat-content">
@@ -128,7 +182,8 @@
                 <p><strong>Goal:</strong> Introduce dynamic, editable tile weights to the WFC initialization.</p>
                 <ul>
                     <li>Add numeric input fields for Water, Sand, Grass, and Mountain to the UI panel.</li>
-                    <li>Modify <code>main.js</code> to read these weight values prior to triggering the <code>collapse()</code> logic instead of using hardcoded constants.</li>
+                    <li>Modify <code>main.js</code> to read these weight values prior to triggering the
+                        <code>collapse()</code> logic instead of using hardcoded constants.</li>
                 </ul>
             </div>
         </details>
@@ -142,10 +197,12 @@
             </summary>
             <div class="chat-content">
                 <h3 class="plan-title">Plan of Action</h3>
-                <p><strong>Goal:</strong> Provide a dropdown to switch between BFS (Queue) and DFS (Stack) constraint propagation strategies.</p>
+                <p><strong>Goal:</strong> Provide a dropdown to switch between BFS (Queue) and DFS (Stack) constraint
+                    propagation strategies.</p>
                 <ul>
                     <li>Add a <code>&lt;select&gt;</code> element to the control panel for Strategy.</li>
-                    <li>Modify the <code>propagate(queue)</code> loop in JS to check the strategy dropdown and execute either <code>queue.shift()</code> (BFS) or <code>queue.pop()</code> (DFS).</li>
+                    <li>Modify the <code>propagate(queue)</code> loop in JS to check the strategy dropdown and execute
+                        either <code>queue.shift()</code> (BFS) or <code>queue.pop()</code> (DFS).</li>
                 </ul>
             </div>
         </details>
@@ -154,16 +211,22 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-15 21:12:45</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"By breadth-first I meant processing the neighbours of all nodes already on the map. So when the user places 2 unconnected tiles, they should both lead to their own 'growing bubbles' of generation..."</i>
+                    <i style="text-align: left; width: 100%;">"By breadth-first I meant processing the neighbours of all
+                        nodes already on the map. So when the user places 2 unconnected tiles, they should both lead to
+                        their own 'growing bubbles' of generation..."</i>
                 </div>
             </summary>
             <div class="chat-content">
                 <h3 class="plan-title">Plan of Action</h3>
-                <p><strong>Goal:</strong> Radically alter the heuristic of the WFC "Next Cell to Collapse" logic to enforce spatial bubbling around existing constraints.</p>
+                <p><strong>Goal:</strong> Radically alter the heuristic of the WFC "Next Cell to Collapse" logic to
+                    enforce spatial bubbling around existing constraints.</p>
                 <ul>
-                    <li>Instead of scanning the entire grid for the lowest global entropy, maintain a <code>frontier</code> array of neighbors touching collapsed cells.</li>
-                    <li>If using BFS, exclusively select the lowest entropy cell from the <code>frontier</code> layer.</li>
-                    <li>If the grid is completely empty, automatically seed the very center tile <code>[16, 16]</code> before starting the generation loop.</li>
+                    <li>Instead of scanning the entire grid for the lowest global entropy, maintain a
+                        <code>frontier</code> array of neighbors touching collapsed cells.</li>
+                    <li>If using BFS, exclusively select the lowest entropy cell from the <code>frontier</code> layer.
+                    </li>
+                    <li>If the grid is completely empty, automatically seed the very center tile <code>[16, 16]</code>
+                        before starting the generation loop.</li>
                 </ul>
             </div>
         </details>
@@ -172,15 +235,22 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-15 21:28:10</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"For some reason generating without an initial configuration leaves a single tile empty. Also, in the event of more than one tile in the initial configuration the breadth strategy still seems to be processing the neighbours of one tile in depth..."</i>
+                    <i style="text-align: left; width: 100%;">"For some reason generating without an initial
+                        configuration leaves a single tile empty. Also, in the event of more than one tile in the
+                        initial configuration the breadth strategy still seems to be processing the neighbours of one
+                        tile in depth..."</i>
                 </div>
             </summary>
             <div class="chat-content">
                 <h3 class="plan-title">Plan of Action</h3>
-                <p><strong>Goal:</strong> Fix the missing central seed tile and enforce true layer-by-layer Breadth-First-Search bubbling.</p>
+                <p><strong>Goal:</strong> Fix the missing central seed tile and enforce true layer-by-layer
+                    Breadth-First-Search bubbling.</p>
                 <ul>
-                    <li>Fix initialization sequence so the auto-seeded center tile natively collapses completely and triggers the propagation step.</li>
-                    <li>Restructure the BFS array fallback logic. The heuristic was incorrectly favoring one cluster's frontier over others. Modify the neighbor mapping to accurately gather all cells globally bounding collapsed areas before min-entropy filtering.</li>
+                    <li>Fix initialization sequence so the auto-seeded center tile natively collapses completely and
+                        triggers the propagation step.</li>
+                    <li>Restructure the BFS array fallback logic. The heuristic was incorrectly favoring one cluster's
+                        frontier over others. Modify the neighbor mapping to accurately gather all cells globally
+                        bounding collapsed areas before min-entropy filtering.</li>
                 </ul>
             </div>
         </details>
@@ -189,7 +259,9 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-15 23:54:49</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"Perfect. Now for the issue of responsiveness. When the grid is on its own row it shrinks and shows nothing. Also, the plan is to view this page on mobile as well as desktop"</i>
+                    <i style="text-align: left; width: 100%;">"Perfect. Now for the issue of responsiveness. When the
+                        grid is on its own row it shrinks and shows nothing. Also, the plan is to view this page on
+                        mobile as well as desktop"</i>
                 </div>
             </summary>
             <div class="chat-content">
@@ -197,7 +269,8 @@
                 <p><strong>Goal:</strong> Refactor CSS for mobile responsiveness and grid stability.</p>
                 <ul>
                     <li>Wrap the CSS Grid inside an aspect-ratio preserving container that anchors purely to width.</li>
-                    <li>Implement media queries to shift the layout from row-based sidebar to a column-based layout on smaller screens.</li>
+                    <li>Implement media queries to shift the layout from row-based sidebar to a column-based layout on
+                        smaller screens.</li>
                     <li>Assign minimum touch-target heights for mobile interaction.</li>
                 </ul>
             </div>
@@ -207,16 +280,22 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-16 00:12:47</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"Functionality is all there. Now generate a navbar that has links to 'Island generation' (this page), 'floor plan generation' (generate this), and 'how this was made' (generate this page, detail the development process with the scratchpads and chat history)"</i>
+                    <i style="text-align: left; width: 100%;">"Functionality is all there. Now generate a navbar that
+                        has links to 'Island generation' (this page), 'floor plan generation' (generate this), and 'how
+                        this was made' (generate this page, detail the development process with the scratchpads and chat
+                        history)"</i>
                 </div>
             </summary>
             <div class="chat-content">
                 <h3 class="plan-title">Plan of Action</h3>
-                <p><strong>Goal:</strong> Pivot the single-page application into a multi-page portal using Jinja2 inheritance.</p>
+                <p><strong>Goal:</strong> Pivot the single-page application into a multi-page portal using Jinja2
+                    inheritance.</p>
                 <ul>
-                    <li>Abstract <code>base.html</code> to contain the HTML <code>&lt;head&gt;</code> and a new global navigation bar.</li>
+                    <li>Abstract <code>base.html</code> to contain the HTML <code>&lt;head&gt;</code> and a new global
+                        navigation bar.</li>
                     <li>Migrate the island logic into the <code>/</code> route on <code>index.html</code>.</li>
-                    <li>Create the new <code>/floor-plan</code> route containing duplicate UI structure to be wired up for interior generation.</li>
+                    <li>Create the new <code>/floor-plan</code> route containing duplicate UI structure to be wired up
+                        for interior generation.</li>
                     <li>Create the <code>/about</code> route detailing the chat logs.</li>
                 </ul>
             </div>
@@ -226,7 +305,10 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-16 00:22:05</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"The navbar should be at the top. Also rename the project to quantum sandbox in the about page, rephrase it to highlight that this was made using Google Antigravity with minimal input. Include the prompts I've written along with their timestamps"</i>
+                    <i style="text-align: left; width: 100%;">"The navbar should be at the top. Also rename the project
+                        to quantum sandbox in the about page, rephrase it to highlight that this was made using Google
+                        Antigravity with minimal input. Include the prompts I've written along with their
+                        timestamps"</i>
                 </div>
             </summary>
             <div class="chat-content">
@@ -239,21 +321,28 @@
                 </ul>
             </div>
         </details>
-        
+
         <details class="chat-entry">
             <summary class="chat-header">
                 <div class="chat-time">2026-03-16 00:41:22</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"As for the Interior Decoration, additional rules need to be followed. Namely generation is to work in terms of rooms now: all walls should be connected, and all rooms should be connected, walls encapsulate rooms and rooms are connected by doors 'in' the wall veins seperating them, doors must be sandwiched by walls. Empty space is encouraged, but rooms should be a minimum of 5 cells wide and tall"</i>
+                    <i style="text-align: left; width: 100%;">"As for the Interior Decoration, additional rules need to
+                        be followed. Namely generation is to work in terms of rooms now: all walls should be connected,
+                        and all rooms should be connected, walls encapsulate rooms and rooms are connected by doors 'in'
+                        the wall veins seperating them, doors must be sandwiched by walls. Empty space is encouraged,
+                        but rooms should be a minimum of 5 cells wide and tall"</i>
                 </div>
             </summary>
             <div class="chat-content">
                 <h3 class="plan-title">Plan of Action</h3>
-                <p><strong>Goal:</strong> Create a specialized Macro-WFC Hybrid engine specifically for floor plan generation in <code>floor_plan.js</code>.</p>
+                <p><strong>Goal:</strong> Create a specialized Macro-WFC Hybrid engine specifically for floor plan
+                    generation in <code>floor_plan.js</code>.</p>
                 <ul>
                     <li>Design a pre-WFC logical "Mask" step that guarantees 5x5 connected topological rectangles.</li>
-                    <li>Bind this mask to the immediate Entropy array of the grid so WFC is strictly funneled into these room layouts.</li>
-                    <li>Replace symmetric adjacency rules with complex explicitly Directional rules (up, down, left, right) to enforce the sandwiching constraints of doors and the connective limits of walls.</li>
+                    <li>Bind this mask to the immediate Entropy array of the grid so WFC is strictly funneled into these
+                        room layouts.</li>
+                    <li>Replace symmetric adjacency rules with complex explicitly Directional rules (up, down, left,
+                        right) to enforce the sandwiching constraints of doors and the connective limits of walls.</li>
                 </ul>
             </div>
         </details>
@@ -262,17 +351,24 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-16 00:54:33</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"Walls should only be connected to floors. Also, there is no use for door tiles anymore, and outside tiles should be recoloured to something a bit lighter to differentiate with reset tiles"</i>
+                    <i style="text-align: left; width: 100%;">"Walls should only be connected to floors. Also, there is
+                        no use for door tiles anymore, and outside tiles should be recoloured to something a bit lighter
+                        to differentiate with reset tiles"</i>
                 </div>
             </summary>
             <div class="chat-content">
                 <h3 class="plan-title">Plan of Action</h3>
                 <p><strong>Goal:</strong> Visually and logically simplify the overly complex Floor Plan generation.</p>
                 <ul>
-                    <li>Completely rip out the <code>Door</code> tiles from the HTML Palette, CSS, and internal JS adjacency engines.</li>
+                    <li>Completely rip out the <code>Door</code> tiles from the HTML Palette, CSS, and internal JS
+                        adjacency engines.</li>
                     <li>Fall back onto symmetrical WFC resolution rules from the Directional rules.</li>
-                    <li>Update CSS variable <code>--terrain-empty</code> from the black background void color to <code>#1e293b</code> to provide visual contrast.</li>
-                    <li>Implement rigorous distance checking around the Blueprint Macro Mask: forcefully assign <code>Empty</code> to any tile that does not directly border a generated room. This physically limits WFC walls causing them to perfectly wrap around the interior rooms and preventing floating space-walls.</li>
+                    <li>Update CSS variable <code>--terrain-empty</code> from the black background void color to
+                        <code>#1e293b</code> to provide visual contrast.</li>
+                    <li>Implement rigorous distance checking around the Blueprint Macro Mask: forcefully assign
+                        <code>Empty</code> to any tile that does not directly border a generated room. This physically
+                        limits WFC walls causing them to perfectly wrap around the interior rooms and preventing
+                        floating space-walls.</li>
                 </ul>
             </div>
         </details>
@@ -281,17 +377,23 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-16 01:10:54</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"Maximize the bounding box of the structure, fill space in the 32x32 grid without making it all 1 room and allow for rooms with weird shapes, not just quadrillaterals, also minimize the amount of hallways"</i>
+                    <i style="text-align: left; width: 100%;">"Maximize the bounding box of the structure, fill space in
+                        the 32x32 grid without making it all 1 room and allow for rooms with weird shapes, not just
+                        quadrillaterals, also minimize the amount of hallways"</i>
                 </div>
             </summary>
             <div class="chat-content">
                 <h3 class="plan-title">Plan of Action</h3>
-                <p><strong>Goal:</strong> Rewrite the Floor Plan logic mask generation to create organic, grid-filling blob structures tied by Minimum Spanning Trees.</p>
+                <p><strong>Goal:</strong> Rewrite the Floor Plan logic mask generation to create organic, grid-filling
+                    blob structures tied by Minimum Spanning Trees.</p>
                 <ul>
-                    <li>Generate anchor focal points spanning the corners and center of the 32x32 dimensional boundaries.</li>
-                    <li>Swap geometric rectangle blueprints for overlapping radial circular algorithms to create organic 'blob lobes'.</li>
+                    <li>Generate anchor focal points spanning the corners and center of the 32x32 dimensional
+                        boundaries.</li>
+                    <li>Swap geometric rectangle blueprints for overlapping radial circular algorithms to create organic
+                        'blob lobes'.</li>
                     <li>Connect the disjointed room blobs via calculation of a Minimum Spanning Tree (MST).</li>
-                    <li>Iterate thick, ~2-cell wide mathematical paths along the edges of the MST to act as bridges instead of tiny hallways.</li>
+                    <li>Iterate thick, ~2-cell wide mathematical paths along the edges of the MST to act as bridges
+                        instead of tiny hallways.</li>
                 </ul>
             </div>
         </details>
@@ -318,7 +420,8 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-16 01:40:00</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"Replace all references to 'Quantum Forge' to 'Quantum Sandbox'. publish this entire repo to my github"</i>
+                    <i style="text-align: left; width: 100%;">"Replace all references to 'Quantum Forge' to 'Quantum
+                        Sandbox'. publish this entire repo to my github"</i>
                 </div>
             </summary>
             <div class="chat-content">
@@ -335,7 +438,8 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-16 01:55:00</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"I have a squarespace domain, I want to redirect a CNAME to index"</i>
+                    <i style="text-align: left; width: 100%;">"I have a squarespace domain, I want to redirect a CNAME
+                        to index"</i>
                 </div>
             </summary>
             <div class="chat-content">
@@ -352,7 +456,8 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-16 02:10:00</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"generate a favicon and fill in some seo. A bit more flat and abstract."</i>
+                    <i style="text-align: left; width: 100%;">"generate a favicon and fill in some seo. A bit more flat
+                        and abstract."</i>
                 </div>
             </summary>
             <div class="chat-content">
@@ -360,7 +465,8 @@
                 <p><strong>Goal:</strong> Implement professional branding and SEO meta-data.</p>
                 <ul>
                     <li>Generate a modern, flat, abstract <code>favicon.png</code>.</li>
-                    <li>Inject OpenGraph, Twitter Card, and Meta description tags into all page headers for viral sharing and search indexing.</li>
+                    <li>Inject OpenGraph, Twitter Card, and Meta description tags into all page headers for viral
+                        sharing and search indexing.</li>
                 </ul>
             </div>
         </details>
@@ -369,7 +475,8 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-16 02:35:00</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"The rooms are now being generated the same way every time. Roll back the splotting"</i>
+                    <i style="text-align: left; width: 100%;">"The rooms are now being generated the same way every
+                        time. Roll back the splotting"</i>
                 </div>
             </summary>
             <div class="chat-content">
@@ -386,14 +493,16 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-16 02:45:00</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"Reorient the 'Generation' controls to be under the tilemap when in portrait mode"</i>
+                    <i style="text-align: left; width: 100%;">"Reorient the 'Generation' controls to be under the
+                        tilemap when in portrait mode"</i>
                 </div>
             </summary>
             <div class="chat-content">
                 <h3 class="plan-title">Plan of Action</h3>
                 <p><strong>Goal:</strong> Optimize the mobile user experience for vertical viewports.</p>
                 <ul>
-                    <li>Implement CSS <code>order</code> flex properties within media queries to move the sidebar controls below the interactive grid on narrow screens.</li>
+                    <li>Implement CSS <code>order</code> flex properties within media queries to move the sidebar
+                        controls below the interactive grid on narrow screens.</li>
                 </ul>
             </div>
         </details>
@@ -402,7 +511,9 @@
             <summary class="chat-header">
                 <div class="chat-time">2026-03-16 02:50:00</div>
                 <div class="chat-prompt">
-                    <i style="text-align: left; width: 100%;">"Update the about page to have all prompts and actions up till now. Also vertically align all elements in the navbar to the bottom and make it slimmer"</i>
+                    <i style="text-align: left; width: 100%;">"Update the about page to have all prompts and actions up
+                        till now. Also vertically align all elements in the navbar to the bottom and make it
+                        slimmer"</i>
                 </div>
             </summary>
             <div class="chat-content">
@@ -415,6 +526,64 @@
             </div>
         </details>
 
+        <details class="chat-entry">
+            <summary class="chat-header">
+                <div class="chat-time">2026-03-16 02:58:00</div>
+                <div class="chat-prompt">
+                    <i style="text-align: left; width: 100%;">"the html files hosted are uncompiled jinja template files. Compile them then Include this prompt in the about page"</i>
+                </div>
+            </summary>
+            <div class="chat-content">
+                <h3 class="plan-title">Plan of Action</h3>
+                <p><strong>Goal:</strong> Transition from manual template shadowing to a proper static site generation pipeline.</p>
+                <ul>
+                    <li>Develop a Python compilation utility (<code>compile_static.py</code>) using the Flask application context to render every Jinja2 template into its final HTML form.</li>
+                    <li>Post-process the rendered HTML to normalize asset paths for GitHub Pages sub-directory compatibility.</li>
+                    <li>Synchronize the latest "Meta-Prompt" into the persistent development history.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="chat-entry">
+            <summary class="chat-header">
+                <div class="chat-time">2026-03-16 03:03:00</div>
+                <div class="chat-prompt">
+                    <i style="text-align: left; width: 100%;">"The issue is that the html files at the root are jinja templates. they still have {% extends "base.html" %}. render the appropriate templates from the templates folder and update about.html"</i>
+                </div>
+            </summary>
+            <div class="chat-content">
+                <h3 class="plan-title">Plan of Action</h3>
+                <p><strong>Goal:</strong> Finalize the static site generation by rendering all templates into pure HTML.</p>
+                <ul>
+                    <li>Execute the <code>compile_static.py</code> rendering engine to convert <code>templates/*.html</code> into finished root-level <code>.html</code> files.</li>
+                    <li>Ensure all Jinja2 syntax (inheritance, blocks, <code>url_for</code>) is fully resolved into static strings.</li>
+                    <li>Update the development history once more to reflect this final step in the deployment pipeline.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="chat-entry">
+            <summary class="chat-header">
+                <div class="chat-time">2026-03-16 03:07:00</div>
+                <div class="chat-prompt">
+                    <i style="text-align: left; width: 100%;">"Use jinja2 itself, not flask to get the final html files"</i>
+                </div>
+            </summary>
+            <div class="chat-content">
+                <h3 class="plan-title">Plan of Action</h3>
+                <p><strong>Goal:</strong> Decouple the static site generation from the Flask framework for a truly independent build process.</p>
+                <ul>
+                    <li>Refactor the compilation script to use the core <code>jinja2</code> Environment and FileSystemLoader.</li>
+                    <li>Implement a custom <code>url_for</code> mock within the Jinja environment to handle asset mapping and cross-page linking without requiring a server context.</li>
+                    <li>Finalize the 32x32 grid generation tools as a fully portable, static web experience.</li>
+                </ul>
+            </div>
+        </details>
     </div>
 </main>
-{% endblock %}
+
+    </div>
+
+    
+</body>
+</html>

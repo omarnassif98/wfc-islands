@@ -1,8 +1,36 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floor Plan Generation</title>
+    <meta name="description" content="Quantum Sandbox: A procedural generation playground for islands and interior floor plans.">
+    <meta name="keywords" content="Wave Function Collapse, WFC, Procedural Generation, Quantum Sandbox">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://waves.byomz.dev/">
+    <meta property="og:title" content="Quantum Sandbox">
+    <meta property="og:description" content="A procedural generation playground for islands and interior floor plans.">
+    <meta property="og:image" content="https://waves.byomz.dev/favicon.png">
 
-{% block title %}Floor Plan Generation{% endblock %}
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Wave Function Collapse</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="">Island Generation</a></li>
+            <li><a href="floor-plan.html" class="active">Floor Plan Generation</a></li>
+            <li><a href="about.html" class="">How it was made</a></li>
+        </ul>
+    </nav>
 
-{% block content %}
+    <div class="app-container">
+        
 <header>
     <h1>Quantum <span class="highlight">Floor</span> Sandbox</h1>
     <p>Procedural interior generation using Wave Function Collapse</p>
@@ -85,8 +113,11 @@
         </div>
     </section>
 </main>
-{% endblock %}
 
-{% block extra_js %}
-<script src="{{ url_for('static', filename='floor_plan.js') }}"></script>
-{% endblock %}
+    </div>
+
+    
+<script src="./floor_plan.js"></script>
+
+</body>
+</html>
