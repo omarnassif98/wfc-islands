@@ -23,22 +23,31 @@
         @media (max-width: 600px) {
             .navbar {
                 padding: 0.5rem 1rem !important;
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 0.5rem;
             }
             .nav-links {
                 overflow-x: auto;
                 white-space: nowrap;
                 flex-wrap: nowrap;
                 gap: 1.5rem;
-                padding-bottom: 5px; /* Space for scrollbar if visible */
+                padding-bottom: 8px; 
                 width: 100%;
                 justify-content: flex-start;
                 -webkit-overflow-scrolling: touch;
             }
             .nav-links::-webkit-scrollbar {
-                display: none; /* Hide scrollbar for a cleaner feel */
+                display: none;
             }
             .nav-brand {
-                display: none; /* Hide brand on very small screens to give room to links */
+                font-size: 1.2rem;
+            }
+            .navbar-left {
+                width: 100%;
+                justify-content: space-between;
+                display: flex;
+                align-items: center;
             }
         }
 
@@ -52,42 +61,41 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.6rem;
+            width: 38px;
+            height: 38px;
+            padding: 0;
             transition: all 0.2s;
-            margin-right: 1rem;
+            flex-shrink: 0;
         }
 
         .theme-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: var(--bg-panel);
             border-color: var(--accent);
-        }
-
-        body.light-mode .theme-toggle:hover {
-            background-color: rgba(0, 0, 0, 0.03);
+            transform: translateY(-1px);
         }
 
         .theme-toggle .icon-sun { display: none; }
         .theme-toggle .icon-moon { display: block; }
-        body.light-mode .theme-toggle .icon-sun { display: block; }
-        body.light-mode .theme-toggle .icon-moon { display: none; }
+        html.light-mode .theme-toggle .icon-sun { display: block; }
+        html.light-mode .theme-toggle .icon-moon { display: none; }
     </style>
     <!-- Anti-FOUC Script -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'light') {
-                document.body.classList.add('light-mode');
+                document.documentElement.classList.add('light-mode');
             }
         })();
     </script>
 </head>
 <body>
     <nav class="navbar">
-        <div style="display: flex; align-items: flex-end;">
-            <div class="nav-brand" style="margin-right: 1.5rem;">Wave Function Collapse</div>
-            <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
-                <svg class="icon-moon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                <svg class="icon-sun" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <div class="navbar-left" style="display: flex; align-items: center; gap: 1.5rem;">
+            <div class="nav-brand">Wave Function Collapse</div>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
             </button>
         </div>
         <ul class="nav-links">
@@ -687,13 +695,16 @@
     </div>
 
     <script>
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                const isLight = document.body.classList.toggle('light-mode');
-                localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            });
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const isLight = document.documentElement.classList.toggle('light-mode');
+                    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+                    console.log('Theme toggled to:', isLight ? 'light' : 'dark');
+                });
+            }
+        });
     </script>
     
 </body>

@@ -36,20 +36,20 @@
 }
 
 /* LIGHT THEME OVERRIDES */
-body.light-mode {
-    --bg-dark: #f8fafc;
+html.light-mode {
+    --bg-dark: #f1f5f9;
     --bg-panel: #ffffff;
     --text-main: #0f172a;
-    --text-muted: #475569;
+    --text-muted: #64748b;
     --accent: #2563eb;
     --accent-hover: #1d4ed8;
-    --border-color: #e2e8f0;
-    --shadow-color: rgba(15, 23, 42, 0.08);
+    --border-color: #cbd5e1;
+    --shadow-color: rgba(15, 23, 42, 0.05);
 
-    --terrain-empty: #f1f5f9;
-    --terrain-empty-hover: #e2e8f0;
-    --terrain-uncollapsed: #e2e8f0;
-    --terrain-uncollapsed-hover: #cbd5e1;
+    --terrain-empty: #f8fafc;
+    --terrain-empty-hover: #f1f5f9;
+    --terrain-uncollapsed: #f1f5f9;
+    --terrain-uncollapsed-hover: #e2e8f0;
 }
 
 * {
@@ -68,6 +68,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .app-container {
@@ -89,6 +90,7 @@ body {
     align-items: flex-end; /* Align elements to the bottom */
     padding: 0.5rem 2rem; /* Slimmer padding */
     box-shadow: 0 4px 6px -1px var(--shadow-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-brand {
@@ -166,6 +168,7 @@ header p {
     padding: 1.5rem;
     border: 1px solid var(--border-color);
     box-shadow: 0 10px 25px -5px var(--shadow-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }
 
 .panel h2 {
@@ -382,6 +385,7 @@ header p {
     padding: 2rem;
     border: 1px solid var(--border-color);
     box-shadow: 0 10px 25px -5px var(--shadow-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .grid-wrapper {
