@@ -582,6 +582,7 @@
                     <li>Refactor <code>style.css</code> variables into a dual-theme system, defining a premium high-contrast light mode palette.</li>
                     <li>Integrate a sophisticated Theme Toggle component into the global <code>base.html</code> navigation bar using inline optimized SVGs.</li>
                     <li>Ensure zero-latency state persistence via <code>localStorage</code> with an inline anti-FOUC script to prevent unstyled flashes on page load.</li>
+                    <li><strong>Hotfix:</strong> Rewrote <code>compile_static.py</code> to automatically synchronize root stylesheet and script assets during every build, fixing an issue where the live site was serving stale visual variables.</li>
                 </ul>
             </div>
         </details>
